@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { StaticQuery, graphql } from "gatsby";
+import { useLocation, useNavigate } from "@reach/router";
 
 import Content from "./content";
 import SmartLink from "./smartLink";
@@ -37,6 +38,8 @@ const includeQuery = graphql`
 const PlatformContent = ({ includePath }) => {
   const [platform, setPlatform] = React.useState(null);
   const [dropdown, setDropdown] = React.useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <StaticQuery
@@ -79,6 +82,12 @@ const PlatformContent = ({ includePath }) => {
                         onClick={() => {
                           setDropdown(false);
                           setPlatform(platform);
+                          // navigate({
+                          //   ...location,
+                          //   query: {
+                          //     platform: platform.slug,
+                          //   },
+                          // });
                         }}
                       >
                         {platform.name}

@@ -22,7 +22,7 @@ To send traces, set the `tracesSampleRate` to a nonzero value. The following co
 const Sentry = require("@sentry/node");
 
 // This is required since it patches functions on the hub
-const Apm = require("@sentry/apm"); 
+const Apm = require("@sentry/apm");
 
 Sentry.init({
   dsn: "___PUBLIC_DSN___",
@@ -51,7 +51,7 @@ Sentry.init({
   tracesSampleRate: 0.25
 });
 
-// RequestHandler creates a separate execution context using domains, so that every 
+// RequestHandler creates a separate execution context using domains, so that every
 // transaction/span/breadcrumb is attached to its own Hub instance
 app.use(Sentry.Handlers.requestHandler());
 // TracingHandler creates a trace for every incoming request
@@ -71,8 +71,6 @@ Spans are instrumented for the following operations within a transaction:
 
 **Manual Instrumentation**
 
-<!-- WIZARD node-tracing -->
-
 To manually instrument a specific region of your code, you can create a transaction to capture it.
 
 The following example creates a transaction for a part of the code that contains an expensive operation (for example, `processItem`), and sends the result to Sentry:
@@ -81,7 +79,7 @@ The following example creates a transaction for a part of the code that contains
 app.use(function processItems(req, res, next) {
   const item = getFromQueue();
   const transaction = Sentry.startTransaction({
-      op: "task",  
+      op: "task",
       name: item.getTransaction()
   })
 
@@ -92,5 +90,3 @@ app.use(function processItems(req, res, next) {
   })
 });
 ```
-
-<!-- ENDWIZARD -->

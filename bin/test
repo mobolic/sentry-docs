@@ -4,6 +4,7 @@
 # Run tests
 
 export TEST_MODE=true
+export JEKYLL_ENABLE_PLATFORM_API=true
 
 ./bin/build _config.test.yml
 
